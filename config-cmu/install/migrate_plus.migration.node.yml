@@ -45,11 +45,12 @@ process:
   # Dates are EDTF strings
   field_edtf_date: issued
 
-  # Make the object an 'Image'
+  # Make the object an 'Image' this will look at specific taxonomy terms if none exist.
   field_model:
     plugin: entity_lookup
     source: constants/model
     entity_type: taxonomy_term
+    # 'name' is the string value of the term, e.g. 'Original file', 'Thumbnail'.
     value_key: name 
     bundle_key: vid
     bundle: islandora_models 
