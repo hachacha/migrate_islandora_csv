@@ -22,6 +22,8 @@ source:
   # You can't enter string literals into a process plugin, but you can give it a constant as a 'source'.
   constants:
     # We're tagging our media as Original Files 
+    # if we wanted a different use case we can have it look reference another field in the csv 
+    # dependent upon use just like field_subjects in migration.node.yml
     use: Original File 
 
     # Everything gets created as admin
