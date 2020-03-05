@@ -10,7 +10,7 @@ migration_group: migrate_islandora_csv
 
 source:
   plugin: csv
-  path: modules/contrib/migrate_islandora_csv/data/migration.csv
+  path: modules/contrib/migrate_islandora_csv/data-cmu/thistlebooks.csv
 
   # 1 means you have a header row, 0 means you don't
   header_row_count: 1
@@ -71,6 +71,7 @@ process:
       value_key: name
       bundle_key: vid
       bundle: subject
+# need to add to collection and then also take in relevant fields not the photographers and providers like in the example below.
 
   # If you have multiple values of a complex
   # field, iterate over them using sub_process.
