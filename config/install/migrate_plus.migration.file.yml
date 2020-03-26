@@ -4,13 +4,13 @@ dependencies:
     module:
       - migrate_islandora_csv 
 
-id: file
-label: Import Image Files
+id: thistle_migration_1982
+label: Thistle migrate 1982
 migration_group: migrate_islandora_csv 
 
 source:
   plugin: csv
-  path: 'modules/contrib/migrate_islandora_csv/data/migration.csv'
+  path: 'modules/contrib/migrate_islandora_csv/data/thistle_1982_images.csv'
   delimiter: ','
 
   # 1 means you have a header row, 0 means you don't
@@ -25,7 +25,7 @@ source:
     # Islandora uses flysystem and stream wrappers to work with files.  What we're really saying here is
     # to put these files in Fedora in a 'csv_migration' folder.  It doesn't matter if the directory
     # doesn't exist yet, it will get created for you automatically.
-    destination_dir: 'fedora://csv_migration' 
+    destination_dir: 'fedora://thistle' 
 
     # Hard-code mime type to jpeg.  This could easily come from a column in the CSV if you have
     # different mimetypes.
@@ -43,11 +43,11 @@ process:
   # Hack the file name out of the full path provided in the 'file' column.
   filename:
     -
-      plugin: callback
+      plugin: callback # calls a php function pathinfo below
       callable: pathinfo
-      source: file
+      source: file # on file
     -
-      plugin: extract
+      plugin: extract # get the index like this (above and below) $filename=pathinfo(file)['basename']
       index:
         - basename
 
