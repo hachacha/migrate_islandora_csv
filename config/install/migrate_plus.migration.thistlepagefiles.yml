@@ -4,7 +4,7 @@ dependencies:
     module:
       - migrate_islandora_csv 
 
-id: thistle_migration_1982
+id: thistle_migration_1982_files
 label: Thistle migrate 1982
 migration_group: migrate_islandora_csv 
 
