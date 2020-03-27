@@ -6,7 +6,7 @@ dependencies:
 
 id: thistle_migration_1982_files
 label: Thistle migrate 1982
-migration_group: migrate_islandora_csv 
+migration_group: migrate_thistle 
 
 source:
   plugin: csv
