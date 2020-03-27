@@ -5,8 +5,8 @@ dependencies:
       - migrate_islandora_csv
 
 id: node 
-label: Import Nodes from CSV 
-migration_group: migrate_islandora_csv
+label: Import books from CSV 
+migration_group: migrate_thistle
 
 source:
   plugin: csv

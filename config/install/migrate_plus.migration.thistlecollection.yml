@@ -6,7 +6,7 @@ dependencies:
 
 id: thistlecollection 
 label: Import Collection Nodes from CSV CMU
-migration_group: migrate_islandora_csv
+migration_group: migrate_thistle
 
 source:
   plugin: csv
