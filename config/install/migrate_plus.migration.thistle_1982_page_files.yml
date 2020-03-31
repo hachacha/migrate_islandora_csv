@@ -4,7 +4,7 @@ dependencies:
     module:
       - migrate_islandora_csv
 
-id: thistlefiles
+id: thistle_1982_page_files
 label: Thistle migrate 1982 image files
 migration_group: migrate_thistle 
 

@@ -1,4 +1,4 @@
-id: custom_term_migration
+id: taxonomy1
 label: 'Custom term migration'
 source:
   plugin: embedded_data
