@@ -4,7 +4,7 @@ dependencies:
     module:
       - migrate_islandora_csv
 
-id: node 
+id: thistlepagenode1982
 label: Import thistle page Nodes from CSV 
 migration_group: migrate_thistle
 
