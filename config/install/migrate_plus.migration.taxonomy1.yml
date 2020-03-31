@@ -1,0 +1,23 @@
+id: custom_term_migration
+label: 'Custom term migration'
+source:
+  plugin: embedded_data
+  data_rows:
+    -
+      term_id: 1
+      name: 'Small'
+    -
+      term_id: 2
+      name: 'Medium'
+    -
+      term_id: 3
+      name: 'Large'
+  ids:
+    term_id:
+      type: integer
+process:
+  tid: term_id
+  name: name
+destination:
+  plugin: entity:taxonomy_term
+  default_bundle: tags
