@@ -2,7 +2,7 @@
 dependencies:
   enforced:
     module:
-      - migrate_islandora_CMU
+      - migrate_islandora_csv
 
 id: thistlecollection 
 label: Import Collection Nodes from CSV CMU
