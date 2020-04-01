@@ -12,8 +12,10 @@ source:
   plugin: csv
   path: modules/contrib/migrate_islandora_csv/data/thistle_1982_book_node.csv
 
-  # 1 means you have a header row, 0 means you don't
+    # 1 means you have a header row, 0 means you don't
   header_row_count: 1
+  # note: using | as the delimiter for book info since there are so many commas in it already
+  delimiter: '|'  
 
   # Each migration needs a unique key per row in the csv.  Here we're using the file path.
   keys:
@@ -22,7 +24,15 @@ source:
   # You can't enter string literals into a process plugin, but you can give it a constant as a 'source'.
   constants:
     # We're tagging our nodes as Images
-    model: Image 
+    model: 'Paged Content'
+
+    #How to display this object
+    display_hint: 'Open Seadragon'
+
+    # The 'author' MARC relator
+    relator: 'relators:aut' 
+    # The general 'creator' MARC relator
+    #relator: 'relators:cre'
 
     # Everything gets created as admin
     uid: 1
@@ -31,6 +41,9 @@ source:
 process:
   title: title
   uid: constants/uid
+  #pid used to link book to its pages 
+  field_pid: file
+
 
   # We use the skip_on_empty plugin because
   # not every row in the CSV has subtitle filled
@@ -44,13 +57,12 @@ process:
 
   # Dates are EDTF strings
   field_edtf_date: issued
-
-  # Make the object an 'Image' this will look at specific taxonomy terms if none exist.
+    
+  # Make the object 'Paged Content' 
   field_model:
     plugin: entity_lookup
     source: constants/model
     entity_type: taxonomy_term
-    # 'name' is the string value of the term, e.g. 'Original file', 'Thumbnail'.
     value_key: name 
     bundle_key: vid
     bundle: islandora_models 
@@ -64,105 +76,59 @@ process:
       method: process
     -
       plugin: explode
-      delimiter: '|'
+      delimiter: ';'
     -
       plugin: entity_generate
       entity_type: taxonomy_term
       value_key: name
       bundle_key: vid
       bundle: subject
-# need to add to collection and then also take in relevant fields not the photographers and providers like in the example below.
 
-  # If you have multiple values of a complex
-  # field, iterate over them using sub_process.
-  # But sub_process requires structured data
-  # i.e. an associative array, not a string
-  # or list of strings. To turn strings into
-  # associative arrays, use the custom
-  # process plugin str_to_assoc.
 
-  # Extract a list of names from the column
-  # called photographer, and transform it into
-  # an array of associative arrays.
-  photographers:
+
+  # Collection
+  field_member_of:
     -
-      source: photographer
       plugin: skip_on_empty
+      source: collection 
       method: process
     -
-      plugin: explode
-      delimiter: '|'
-    -
-      plugin: str_to_assoc
-      key: 'name'
+      plugin: entity_lookup
+      ignore_case: true
+      access_check: false
+      entity_type: node
+#      value_key: title
+# look for collection name in pid to find collection node
+      value_key: field_pid
+      bundle_key: type
+      bundle: islandora_object
 
-  # Iterate over the array of associative arrays.
-  # We create the taxonomy terms here so that we
-  # can specify the bundle - other columns which
-  # might feed into Linked Agent may contain
-  # corporate bodies or families. The resulting
-  # array contains the resulting term id (tid)
-  # under the key 'target_id'.
-  # We also add a key-value pair
-  # 'rel_type' => 'relators:pht'. Other columns
-  # might use different relators.
-  linked_agent_pht:
-    plugin: sub_process
-    source: '@photographers'
-    process:
-      target_id:
-        plugin: entity_generate
-        source: name
-        entity_type: taxonomy_term
-        value_key: name
-        bundle_key: vid
-        bundle: person
-      rel_type:
-        plugin: default_value
-        default_value: 'relators:pht'
+#-----------------------------------------------
+  # Complex fields can have their individual parts set independently.  Use / to denote
+  # you're working with a property of a field directly.
+  'field_linked_agent/target_id':
+    plugin: entity_generate
+    source: author 
+    entity_type: taxonomy_term
+    value_key: name
+    bundle_key: vid
+    bundle: person 
 
-  # Extract an array of names from the column
-  # called provider
-  providers:
-    -
-      source: provider
-      plugin: skip_on_empty
-      method: process
-    -
-      plugin: explode
-      delimiter: '|'
-    -
-      plugin: str_to_assoc
-      key: 'name'
-  # Generate/lookup taxonomy terms in the
-  # corporate body vocab, and add the rel_type.
-  linked_agent_prv:
-    plugin: sub_process
-    source: '@providers'
-    process:
-      target_id:
-        plugin: entity_generate
-        source: name
-        entity_type: taxonomy_term
-        value_key: name
-        bundle_key: vid
-        bundle: 'corporate_body'
-      rel_type:
-        plugin: default_value
-        default_value: 'relators:prv'
+  # Hard-code the rel_type to 'creator' for all the names in the photographer column.
+  'field_linked_agent/rel_type': constants/relator
 
-  # Write to the linked agent field. In this case
-  # we first want to merge the info from the
-  # photographer and provider columns. Since we 
-  # already prepared our structured array using
-  # the components of the typed_relation field as 
-  # keys ('target_id' and 'rel_type'), we can just
-  # pass this array into field_linked_agent.
-  field_linked_agent:
-    plugin: merge
-    source:
-      - '@linked_agent_pht'
-      - '@linked_agent_prv'
+#--------------------------------
+  # display hint = 'Open Seadragon' 
+  field_display_hints:
+      source: constants/display_hint
+      plugin: entity_lookup
+      ignore_case: true
+      access_check: false
+      entity_type: taxonomy_term
+      value_key: name
+      bundle_key: vid
+      bundle: islandora_display
+
 
 # We're making nodes
 destination:
