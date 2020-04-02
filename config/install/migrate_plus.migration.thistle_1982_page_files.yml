@@ -37,19 +37,20 @@ source:
 process:
 
   # Set these properties from constants.
-  # filemime: constants/mimetype
-  # uid: constants/uid
+  filemime: constants/mimetype
+  uid: constants/uid
 
   # Hack the file name out of the full path provided in the 'file' column.
-  filename:
-    -
-      plugin: callback # calls a php function pathinfo below
-      callable: pathinfo
-      source: file # on file
-    -
-      plugin: extract # get the index like this (above and below) $filename=pathinfo(file)['basename']
-      index:
-        - basename
+  filename: file
+  parent: parent
+    # -
+    #   plugin: callback # calls a php function pathinfo below
+    #   callable: pathinfo
+    #   source: file # on file
+    # -
+    #   plugin: extract # get the index like this (above and below) $filename=pathinfo(file)['basename']
+    #   index:
+    #     - basename
 
   # Construct the destination URI using the file name.
   destination:
