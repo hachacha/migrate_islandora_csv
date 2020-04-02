@@ -32,13 +32,13 @@ source:
     mime: image/jpeg
 
     # Everything gets created as admin
-    uid: 1
+    # uid: 1
 
 process:
 
   # Set these properties from constants.
-  filemime: constants/mimetype
-  uid: constants/uid
+  # filemime: constants/mimetype
+  # uid: constants/uid
 
   # Hack the file name out of the full path provided in the 'file' column.
   filename:
