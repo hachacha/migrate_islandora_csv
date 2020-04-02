@@ -15,7 +15,7 @@ source:
     # 1 means you have a header row, 0 means you don't
   header_row_count: 1
   # note: using | as the delimiter for book info since there are so many commas in it already
-  delimiter: '|'  
+  delimiter: ','  
 
   # Each migration needs a unique key per row in the csv.  Here we're using the file path.
   keys:
