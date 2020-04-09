@@ -25,14 +25,14 @@ source:
     # Islandora uses flysystem and stream wrappers to work with files.  What we're really saying here is
     # to put these files in Fedora in a 'csv_migration' folder.  It doesn't matter if the directory
     # doesn't exist yet, it will get created for you automatically.
-    destination_dir: 'fedora://thistle' 
+    destination_dir: 'fedora://thistle/1982/' #specifically the 1982 folder. 
 
     # Hard-code mime type to jpeg.  This could easily come from a column in the CSV if you have
     # different mimetypes.
     mime: image/jpeg
 
     # Everything gets created as admin
-    # uid: 1
+    uid: 1
 
 process:
 
@@ -41,15 +41,15 @@ process:
   uid: constants/uid
 
   # Hack the file name out of the full path provided in the 'file' column.
-  filename: title
+  # filename: title
   # parent: parent
-  filepath: 
+  filename: 
     -
       plugin: callback # calls a php function pathinfo below
       callable: pathinfo
       source: file # on file
     -
-      plugin: extract # get the index like this (above and below) $filepath=pathinfo(file)['basename']
+      plugin: extract # get the index like this (above and below) $filename=pathinfo(file)['basename']
       index:
         - basename
 
@@ -59,7 +59,7 @@ process:
     delimiter: /
     source:
       - constants/destination_dir
-      - '@filepath'
+      - '@filename'
 
   ##
   # Here's where we copy the file over and set the uri of the file entity.
