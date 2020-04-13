@@ -24,8 +24,8 @@ source:
     # We're tagging our media as Original Files 
     # if we wanted a different use case we can have it look reference another field in the csv 
     # dependent upon use just like field_subjects in migration.node.yml
-    # use: Original File 
-    use: Service File
+    use: Original File 
+    # use: Service File
 
     # Everything gets created as admin
     uid: 1
