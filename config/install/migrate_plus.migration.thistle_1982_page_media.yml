@@ -24,7 +24,8 @@ source:
     # We're tagging our media as Original Files 
     # if we wanted a different use case we can have it look reference another field in the csv 
     # dependent upon use just like field_subjects in migration.node.yml
-    use: Original File 
+    # use: Original File 
+    use: Service File
 
     # Everything gets created as admin
     uid: 1
@@ -47,14 +48,14 @@ process:
   field_media_image:
     plugin: migration_lookup
     source: file 
-    migration: file 
+    migration: thistle_1982_page_files
     no_stub: true
 
   # Lookup the migrated node in the node migration
   field_media_of:
     plugin: migration_lookup
-    source: file 
-    migration: node 
+    source: title 
+    migration: thistle_1982_page_nodes 
     no_stub: true
     
 destination:
