@@ -11,19 +11,18 @@ migration_group: migrate_thistle
 source:
   plugin: csv
   path: modules/contrib/migrate_islandora_csv/data/thistle_1982_book_node.csv
+  delimiter: '|'  
 
-    # 1 means you have a header row, 0 means you don't
+  # 1 means you have a header row, 0 means you don't
   header_row_count: 1
-  # note: using | as the delimiter for book info since there are so many commas in it already
-  delimiter: ','  
 
   # Each migration needs a unique key per row in the csv.  Here we're using the file path.
+  # also use this as PID since it's unique.
   keys:
     - file 
 
-  # You can't enter string literals into a process plugin, but you can give it a constant as a 'source'.
   constants:
-    # We're tagging our nodes as Images
+    # book nodes are paged content
     model: 'Paged Content'
 
     #How to display this object

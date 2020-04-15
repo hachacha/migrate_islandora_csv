@@ -10,7 +10,8 @@ migration_group: migrate_thistle
 
 source:
   plugin: csv
-  path: modules/contrib/migrate_islandora_csv/data/thistle_1982_page_files.csv
+  path: modules/contrib/migrate_islandora_csv/data/thistle_1982_page_filesmedia.csv
+  delimiter: '|'
 
   # 1 means you have a header row, 0 means you don't
   header_row_count: 1
@@ -21,13 +22,10 @@ source:
 
   # You can't enter string literals into a process plugin, but you can give it a constant as a 'source'.
   constants:
-    # We're tagging our media as Original Files 
+    # We're tagging our media as Service Files 
     # if we wanted a different use case we can have it look reference another field in the csv 
     # dependent upon use just like field_subjects in migration.node.yml
-    use: 
-      - Original File
-      - Service File
-    # use: Service File
+    use: Service File
 
     # Everything gets created as admin
     uid: 1
@@ -37,7 +35,7 @@ process:
   name: title
   uid: constants/uid
 
-  # Make the media an 'Original File'
+  # Make the media an 'Service File'
   field_media_use:
     plugin: entity_lookup
     source: constants/use

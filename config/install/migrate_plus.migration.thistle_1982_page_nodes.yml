@@ -11,13 +11,14 @@ migration_group: migrate_thistle
 source:
   plugin: csv
   path: modules/contrib/migrate_islandora_csv/data/thistle_1982_page_nodes.csv
+  delimiter: '|'
 
   # 1 means you have a header row, 0 means you don't
   header_row_count: 1
 
   # Each migration needs a unique key per row in the csv.  Here we're using the file path.
   keys:
-    - pagename 
+    - title 
 
   # You can't enter string literals into a process plugin, but you can give it a constant as a 'source'.
   constants:
@@ -35,11 +36,11 @@ source:
 
 # Set fields using values from the CSV
 process:
-  title: pagename
+  title: title
   uid: constants/uid
   promote: constants/promote
   #pid used to link book to its pages 
-  field_pid: pagename
+  field_pid: title
   #weight used to order pages
   field_weight: weight
 
