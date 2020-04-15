@@ -22,7 +22,7 @@ source:
   # You can't enter string literals into a process plugin, but you can give it a constant as a 'source'.
   constants:
     # We're tagging our nodes as Collecions
-    model: Collection 
+    model: Collection
 
     # The 'photographer' MARC relator
     # relator: 'relators:pht' 
