@@ -1,4 +1,4 @@
-id: taxonomy_test
+id: cmu_taxonomy
 label: 'Custom term migration'
 source:
   plugin: embedded_data
@@ -20,4 +20,4 @@ process:
   name: name
 destination:
   plugin: entity:taxonomy_term
-  default_bundle: tags
+  default_bundle: subject
