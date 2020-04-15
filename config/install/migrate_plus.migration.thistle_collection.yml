@@ -11,7 +11,7 @@ migration_group: migrate_thistle
 source:
   plugin: csv
   path: modules/contrib/migrate_islandora_csv/data/thistle_collection.csv
-  delimeter: '|'
+  delimiter: '|'
 
   # 1 means you have a header row, 0 means you don't
   header_row_count: 1
