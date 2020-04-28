@@ -1,2 +1,2 @@
-term_id|title|authority_source|authority_link|authority_alt_title|corp_type
-4666|testing something|lcshac|http://id.loc.gov/authorities/names/n79054102.html|cmu authority file|schema:EducationalOrganization
+term_id|title|authority_source|authority_link|authority_alt_title|corp_type|founding_date|dissolution_date|url_alias|alt_name
+1212|beach|lcshac|http://id.loc.gov/authorities/names/n79054102.html|cmu authority file|schema:EducationalOrganization|2010-04-28T02:14:30+00:00|||le paysage
