@@ -1,0 +1,74 @@
+id: cmu_taxonomy_corporate_body
+label: 'Custom term migration'
+migration_group: migrate_cmu_taxonomy
+source:
+  plugin: csv
+  path: modules/contrib/migrate_islandora_csv/data/taxonomy/cmu_taxonomy_corporate_body.csv
+  delimiter: '|'  
+
+  # 1 means you have a header row, 0 means you don't
+  header_row_count: 1
+
+  # Each migration needs a unique key per row in the csv.  Here we're using the file path.
+  # also use this as PID since it's unique.
+  keys:
+    - file 
+
+  constants:
+    uid: 1
+
+  # optional types of corporate body
+  # org:OrganizationalUnit
+  # schema:Airline
+  # schema:Corporation
+  # schema:EducationalOrganization
+  # schema:GovernmentOrganization
+  # schema:LocalBusiness
+  # schema:MedicalOrganization
+  # schema:NGO
+  # schema:PerformingGroup
+  # schema:SportsOrganization
+  # schema:SportsTeam
+    
+  # optional types of authority links
+  # cash Canadian Subject Headings
+  # lcshac Library of Congress Children's Subject Headings
+  # naf NACO Authority File
+  # nad NAD / ARK II Name Authority Database
+  # nal National Agricultural Library subject headings
+  # rvm Répertoire de vedettes-matière
+  # ulan Union List of Artist Names
+  # other Other
+
+    
+process:
+
+  tid: term_id
+  uid: constants/uid
+  name: name
+
+
+  type: corp_type
+  field_authority_link: 
+    source: authority_source
+    uri: authority_link
+    title: authority_alt_title
+  
+  # do i need value within this? like:
+      # field_cat_date_begin:
+      #   plugin: skip_on_empty
+      #   source: founding_date 
+      #   method: process
+
+  # field_cat_date_begin:
+  #   plugin: skip_on_empty
+  #   source: founding_date 
+  #   method: process
+  # field_cat_date_end:
+  #   plugin: skip_on_empty
+  #   source: dissolution_date 
+  #   method: process
+
+destination:
+  plugin: entity:taxonomy_term
+  default_bundle: corporate_body

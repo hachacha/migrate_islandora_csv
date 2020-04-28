@@ -4,14 +4,14 @@ source:
   plugin: embedded_data
   data_rows:
     -
-      term_id: 1
-      name: 'Small'
+      term_id: 9090
+      name: 'doggy'
     -
-      term_id: 2
-      name: 'Medium'
+      term_id: 9091
+      name: 'kitty'
     -
-      term_id: 3
-      name: 'Large'
+      term_id: 9092
+      name: 'elephanty'
   ids:
     term_id:
       type: integer
@@ -20,4 +20,4 @@ process:
   name: name
 destination:
   plugin: entity:taxonomy_term
-  default_bundle: subject
+  default_bundle: tags
