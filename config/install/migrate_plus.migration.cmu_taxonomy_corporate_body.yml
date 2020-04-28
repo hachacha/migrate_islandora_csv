@@ -79,19 +79,38 @@ process:
     method: process
 
   field_relationships/rel_type: rel_type
-  field_relationships/target_id: typed_rel
+  field_relationships/target_id: typed_rel # this needs to be processed futher. bottom of file is example.
 
-  # target_id:
-  #   plugin: entity_generate
-  #   source: name
-  #   entity_type: taxonomy_term
-  #   value_key: name
-  #   bundle_key: vid
-  #   bundle: 'corporate_body'
-  # rel_type:
-  #   plugin: default_value
-  #   default_value: 'relators:prv'
-    
 destination:
   plugin: entity:taxonomy_term
   default_bundle: corporate_body
+
+# Extract an array of names from the column
+# called provider
+# providers:
+#   -
+#     source: provider
+#     plugin: skip_on_empty
+#     method: process
+#   -
+#     plugin: explode
+#     delimiter: '|'
+#   -
+#     plugin: str_to_assoc
+#     key: 'name'
+# Generate/lookup taxonomy terms in the
+# corporate body vocab, and add the relator.
+# linked_agent_prv:
+#   plugin: sub_process
+#   source: '@providers'
+#   process:
+#     target_id:
+#       plugin: entity_generate
+#       source: name
+#       entity_type: taxonomy_term
+#       value_key: name
+#       bundle_key: vid
+#       bundle: 'corporate_body'
+#     rel_type:
+#       plugin: default_value
+#       default_value: 'relators:prv'
