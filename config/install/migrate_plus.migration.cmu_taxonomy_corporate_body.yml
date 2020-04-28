@@ -52,23 +52,19 @@ process:
   field_authority_link/source: authority_source
   field_authority_link/uri: authority_link
   field_authority_link/title: authority_alt_title
-    # uri: authority_link
-    # title: authority_alt_title
+
   
   # do i need value within this? like:
-      # field_cat_date_begin:
+      # field_cat_date_begin/source: founding_date 
       #   plugin: skip_on_empty
-      #   source: founding_date 
       #   method: process
 
-  # field_cat_date_begin:
-  #   plugin: skip_on_empty
-  #   source: founding_date 
-  #   method: process
-  # field_cat_date_end:
-  #   plugin: skip_on_empty
-  #   source: dissolution_date 
-  #   method: process
+  field_cat_date_begin/source: founding_date 
+    plugin: skip_on_empty
+    method: process
+  field_cat_date_end/source: dissolution_date
+    plugin: skip_on_empty 
+    method: process
 
 destination:
   plugin: entity:taxonomy_term
