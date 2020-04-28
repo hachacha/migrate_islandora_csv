@@ -47,7 +47,7 @@ process:
   tid: term_id
   uid: constants/uid
   name: title
-  type: corp_type
+  type: corp_type # i can't get this to work for some reason but the other dropdown authoritylink/source @#$@$@
   path/alias:
     plugin: skip_on_empty
     source: url_alias
@@ -57,11 +57,7 @@ process:
   field_authority_link/uri: authority_link
   field_authority_link/title: authority_alt_title
 
-  
-  # do i need value within this? like:
-      # field_cat_date_begin/source: founding_date 
-      #   plugin: skip_on_empty
-      #   method: process
+
 
   field_cat_date_begin:
     plugin: skip_on_empty
@@ -77,6 +73,25 @@ process:
     source: alt_name
     method: process
 
+  description:
+    plugin: skip_on_empty
+    source: description 
+    method: process
+
+  field_relationships/rel_type: rel_type
+  field_relationships/target_id: typed_rel
+
+  # target_id:
+  #   plugin: entity_generate
+  #   source: name
+  #   entity_type: taxonomy_term
+  #   value_key: name
+  #   bundle_key: vid
+  #   bundle: 'corporate_body'
+  # rel_type:
+  #   plugin: default_value
+  #   default_value: 'relators:prv'
+    
 destination:
   plugin: entity:taxonomy_term
   default_bundle: corporate_body
