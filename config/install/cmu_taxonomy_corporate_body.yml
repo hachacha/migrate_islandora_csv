@@ -1,6 +1,7 @@
 id: cmu_taxonomy_corporate_body
 label: 'Custom term migration'
 migration_group: migrate_cmu_taxonomy
+
 source:
   plugin: csv
   path: modules/contrib/migrate_islandora_csv/data/taxonomy/cmu_taxonomy_corporate_body.csv
@@ -45,10 +46,9 @@ process:
 
   tid: term_id
   uid: constants/uid
-  name: name
-
-
+  name: title
   type: corp_type
+  
   field_authority_link: 
     source: authority_source
     uri: authority_link
