@@ -13,7 +13,7 @@ source:
   # Each migration needs a unique key per row in the csv.  Here we're using the file path.
   # also use this as PID since it's unique.
   keys:
-    - file 
+    - term_id
 
   constants:
     uid: 1
@@ -49,10 +49,11 @@ process:
   name: title
   type: corp_type
   
-  field_authority_link: 
-    source: authority_source
-    uri: authority_link
-    title: authority_alt_title
+  field_authority_link/source: authority_source
+  field_authority_link/uri: authority_link
+  field_authority_link/title: authority_alt_title
+    # uri: authority_link
+    # title: authority_alt_title
   
   # do i need value within this? like:
       # field_cat_date_begin:
