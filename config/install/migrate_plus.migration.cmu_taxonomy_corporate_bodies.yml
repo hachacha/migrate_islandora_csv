@@ -47,7 +47,7 @@ process:
   tid: term_id
   uid: constants/uid
   name: title
-  type: corp_type # i can't get this to work for some reason but the other dropdown authoritylink/source @#$@$@
+  field_type: corp_type # i can't get this to work for some reason but the other dropdown authoritylink/source @#$@$@
   path/alias:
     plugin: skip_on_empty
     source: url_alias
