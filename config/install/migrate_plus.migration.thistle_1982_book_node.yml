@@ -38,6 +38,7 @@ source:
 
 # Set fields using values from the CSV
 process:
+  # file|collection|title|subtitle|description|issued|subjects|author
   title: title
   uid: constants/uid
   #pid used to link book to its pages 
@@ -71,13 +72,15 @@ process:
   field_subject:
     -
       plugin: skip_on_empty
-      source: subject 
+      source: subjects 
       method: process
     -
       plugin: explode
       delimiter: ';'
     -
-      plugin: entity_generate
+      plugin: entity_lookup
+      ignore_case: true
+      access_check: false
       entity_type: taxonomy_term
       value_key: name
       bundle_key: vid
