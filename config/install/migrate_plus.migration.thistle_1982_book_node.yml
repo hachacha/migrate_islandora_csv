@@ -86,7 +86,19 @@ process:
       bundle_key: vid
       bundle: subject
 
-
+  field_geographic_subject:
+    -
+      plugin: skip_on_empty
+      source: geo_location 
+      method: process
+    -
+      plugin: entity_lookup
+      ignore_case: true
+      access_check: false
+      entity_type: taxonomy_term
+      value_key: name
+      bundle_key: vid
+      bundle: geo_location
 
   # Collection
   field_member_of:
