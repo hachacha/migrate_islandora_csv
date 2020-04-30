@@ -79,7 +79,15 @@ process:
     method: process
 
   field_relationships/rel_type: rel_type
-  field_relationships/target_id: typed_rel # this needs to be processed futher. bottom of file is example.
+  field_relationships:
+    source: typed_rel
+    plugin: entity_lookup
+    ignore_case: true
+    access_check: false
+    entity_type: taxonomy_term
+    value_key: name
+    bundle_key: vid
+    bundle: islandora_models  # this needs to be processed futher. bottom of file is example.
 
 destination:
   plugin: entity:taxonomy_term

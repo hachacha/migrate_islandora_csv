@@ -29,3 +29,9 @@
 	
 	- if necessary should have it's own csv but in general it should share the same csv as _file. other metadata can live in the node
 	- config files should really just state the relationship between file and nodes
+
+
+## taxonomy
+
+	- should run the majority first and then run an --update in order link items together with `parent` & `related-entities`
+	- place all in data/taxonomy/cmu_taxonomy_name_of_vocabulary_name.csv

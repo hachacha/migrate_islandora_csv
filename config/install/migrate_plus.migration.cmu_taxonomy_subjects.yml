@@ -1,0 +1,39 @@
+id: cmu_taxonomy_subjects
+label: 'Custom term migration'
+migration_group: migrate_cmu_taxonomy
+
+source:
+  plugin: csv
+  path: modules/contrib/migrate_islandora_csv/data/taxonomy/cmu_taxonomy_subjects.csv
+  delimiter: '|'  
+
+  # 1 means you have a header row, 0 means you don't
+  header_row_count: 1
+
+  # Each migration needs a unique key per row in the csv.  Here we're using the file path.
+  # also use this as PID since it's unique.
+  keys:
+    - term_id
+
+  constants:
+    uid: 1
+    
+process:
+# term_id|title|authority_source|authority_link|authority_alt_title|description
+  tid: term_id
+  uid: constants/uid
+  name: title
+
+  field_authority_link/source: authority_source
+  field_authority_link/uri: authority_link
+  field_authority_link/title: authority_alt_title
+
+  description:
+    plugin: skip_on_empty
+    source: description 
+    method: process
+
+destination:
+  plugin: entity:taxonomy_term
+  default_bundle: subject
+  
