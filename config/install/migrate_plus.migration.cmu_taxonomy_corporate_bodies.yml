@@ -1,10 +1,10 @@
-id: cmu_taxonomy_corporate_body
+id: cmu_taxonomy_corporate_bodies
 label: 'Custom term migration'
 migration_group: migrate_cmu_taxonomy
 
 source:
   plugin: csv
-  path: modules/contrib/migrate_islandora_csv/data/taxonomy/cmu_taxonomy_corporate_body.csv
+  path: modules/contrib/migrate_islandora_csv/data/taxonomy/cmu_taxonomy_corporate_bodies.csv
   delimiter: '|'  
 
   # 1 means you have a header row, 0 means you don't
