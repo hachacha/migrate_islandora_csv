@@ -35,3 +35,4 @@
 
 	- should run the majority first and then run an --update in order link items together with `parent` & `related-entities`
 	- place all in data/taxonomy/cmu_taxonomy_name_of_vocabulary_name.csv
+	- keep it plural
