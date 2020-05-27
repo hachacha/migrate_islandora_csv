@@ -4,13 +4,13 @@ dependencies:
     module:
       - migrate_islandora_csv
 
-id: thistle_book_node 
+id: thistle_book_nodes
 label: Import books from CSV 
 migration_group: migrate_thistle
 
 source:
   plugin: csv
-  path: modules/contrib/migrate_islandora_csv/data/migrations/thistle/thistle_book_node.csv
+  path: modules/contrib/migrate_islandora_csv/data/migrations/thistle/thistle_book_nodes.csv
   delimiter: '|'  
 
   # 1 means you have a header row, 0 means you don't
