@@ -3,7 +3,7 @@
 # run this after the recursivepdf2jpg.py file.
 
 output_page_files_csv = open('thistle_page_files.csv','w')
-output_page_files_csv.write('title|subtitle|description|issued|file\n')
+output_page_files_csv.write('title|subtitle|description|issued|url|file\n')
 output_page_nodes_csv = open('thistle_page_nodes.csv','w')
 output_page_nodes_csv.write('title|subtitle|description|parent|issued|weight|file\n')
 output_book_nodes_csv = open('thistle_book_nodes.csv','w')
@@ -35,7 +35,7 @@ for year in year_list:
 		node_line = ("Thistle %s page %s|||%s_thistle|%s-01-01T00:00:00|%s|%s/thistle_%s_page_%s.jpg\n") % (year,page,year,year,page,year,year,page)
 		output_page_nodes_csv.write(node_line)
 
-		file_line = ("Thistle %s page %s|||%s-01-01T00:00:00|%s/thistle_%s_page_%s.jpg\n") % (year,page,year,year,year,page)
+		file_line = ("Thistle %s page %s|||%s-01-01T00:00:00|http://islandora-file-staging.library.cmu.edu/thistle/images/%s/thistle_%s_page_%s.jpg|thistle_%s_page_%s.jpg\n") % (year,page,year,year,year,page,year,page)
 		output_page_files_csv.write(file_line)
 	
 

@@ -29,7 +29,7 @@ source:
 
     # Everything gets created as admin
     uid: 1
-    url_root: http://islandora-file-staging.library.cmu.edu/thistle/images/
+    # url_root: http://islandora-file-staging.library.cmu.edu/thistle/images/
 
 process:
 
