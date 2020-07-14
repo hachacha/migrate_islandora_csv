@@ -1,5 +1,13 @@
 #/bin/bash
-#pip3 install pdf2image
+
+###### 
+# to be done:
+# incorperate pdfminer library to extract text 
+### ^ -- could use that for images
+# this program is currently specific to thistle (gets date from filename(that's it))
+# but should be created more robustly to read from a csv so other metadata info
+# per pdf or document can be added to the iiif manifest
+
 import os
 import json
 from urllib import parse
@@ -15,11 +23,11 @@ migration_group = "migrate_thistle"
 # assumes that all pdfs are in this dir and labeled as TYB_1982_0001.pdf
 files = os.listdir('.')
 
-output_page_files_csv = open('thistle_page_files.csv','w')
+output_page_files_csv = open(collection + '_page_files.csv','w')
 output_page_files_csv.write('title|subtitle|description|issued|file\n')
-output_page_nodes_csv = open('thistle_page_nodes.csv','w')
+output_page_nodes_csv = open(collection + '_page_nodes.csv','w')
 output_page_nodes_csv.write('title|subtitle|description|parent|issued|weight|file\n')
-output_book_nodes_csv = open('thistle_book_nodes.csv','w')
+output_book_nodes_csv = open(collection + '_book_nodes.csv','w')
 output_book_nodes_csv.write('title|collection|subtitle|description|extent|issued|subjects|author|geo_location|file\n')
 
 for file in files:
@@ -67,9 +75,10 @@ for file in files:
 
                 file_line = ("Thistle %s page %s|||%s-01-01T00:00:00|%s/thistle_%s_page_%s.jpg\n") % (year,page_num,year,year,year,page_num)
                 output_page_files_csv.write(file_line)
-                #label for page
+                # label for page
                 label = collection+"_"+year+"_page_"+page_num+".jpg"
                 url_encoded_label = parse.quote(label, safe='')
+                # based on what's already in islandora node/x/manifest
                 page_dict = {
 
                         "@id": url+"/"+collection+"/"+year+"/canvas/"+page_num,
