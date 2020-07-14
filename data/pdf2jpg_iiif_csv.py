@@ -2,11 +2,12 @@
 
 ###### 
 # to be done:
-# incorperate pdfminer library to extract text 
+# - incorperate pdfminer library to extract text 
 ### ^ -- could use that for images
-# this program is currently specific to thistle (gets date from filename(that's it))
-# but should be created more robustly to read from a csv so other metadata info
-# per pdf or document can be added to the iiif manifest
+# - read metadata from csv
+# - break out variables in to different file to make this more legible
+# - move things in to functions to create legibility
+
 
 import os
 import json
