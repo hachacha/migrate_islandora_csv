@@ -4,7 +4,7 @@
 [![LICENSE](https://img.shields.io/badge/license-GPLv2-blue.svg?style=flat-square)](./LICENSE)
 
 ## Introduction
-xx
+
 This repository, __migrate_islandora_csv__, provides [a tutorial](TUTORIAL.md) that will introduce you to using the Drupal 8 Migrate tools to create Islandora content in 8. Whether you will eventually use CSVs or other sources (such as XML or directly from a 7.x Islandora) this tutorial should be useful as it covers the basics and mechanics of migration.
 
 This repository is also a Drupal Feature that, when enabled as a module, will create three example migrations ready for you to use with the Migrate API. Each migration comes from one of the files in the `config/install` folder. We'll walk through them in detail below.

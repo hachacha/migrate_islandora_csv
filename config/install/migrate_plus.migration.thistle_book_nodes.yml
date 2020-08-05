@@ -69,6 +69,7 @@ process:
 
   # Split up our pipe-delimited string of
   # subjects, and generate terms for each.
+
   field_copyright:
     -
       plugin: skip_on_empty
