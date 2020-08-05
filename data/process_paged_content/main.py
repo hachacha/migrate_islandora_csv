@@ -5,7 +5,10 @@
 import os
 import csv
 from urllib import parse
-from const import Const, Page, Book
+from const import Const
+from book import Book
+from page import Page
+from extractor import Extractor
 
 
 # make me a const and all this
@@ -30,11 +33,7 @@ with open('thistle_yearbooks_test.csv') as csv_file:
 		book.geo_location = row['<mods:physicalLocation>']
 		book.doi = row['<mods:identifier type="doi">']
 
-
-		
-		# find the file name in the csv and then extract the images
-		# should use pdfminer object - layout_scanner 
-		# to do both image extraction and text
+		# build start of iiif to be passed to extractor and written in Page
 		pdf_file = 'pdfs/%s/%s' % ( book.collection, row['filename'] )
 		print(pdf_file)
 		parent = book.title.lower().replace(" ","_")
@@ -52,8 +51,11 @@ with open('thistle_yearbooks_test.csv') as csv_file:
             }
 		
 		
-		page = Page()
-		num_of_pages = page.loop_pages(pdf_file, parent, starter_iiif, book.title, book.issued_date)
-		book.num_of_pages = str(num_of_pages)
-		book.write_book_nodes(parent)
+		
+		extractor = Extractor()		
+		book.num_of_pages = extractor.extract_pages(pdf_file)
+		print(book.num_of_pages)
+		extractor.loop_pages(parent, starter_iiif, book.title, book.issued_date)
+		book.write_book_node_line(parent)
+		print(book.num_of_pages)
 		
