@@ -1,3 +1,0 @@
-[submodule "data/process_paged_content/data/process_paged_content/pdfminer_layout_scanner"]
-	path = data/process_paged_content/data/process_paged_content/pdfminer_layout_scanner
-	url = https://github.com/dpapathanasiou/pdfminer-layout-scanner.git
