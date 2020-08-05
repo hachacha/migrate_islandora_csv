@@ -54,4 +54,6 @@ with open('thistle_yearbooks_test.csv') as csv_file:
 		
 		page = Page()
 		num_of_pages = page.loop_pages(pdf_file, parent, starter_iiif, book.title, book.issued_date)
-		book.num_of_pages = num_of_pages
+		book.num_of_pages = str(num_of_pages)
+		book.write_book_nodes(parent)
+		
