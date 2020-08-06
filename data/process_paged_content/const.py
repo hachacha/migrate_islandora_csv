@@ -18,7 +18,7 @@ class Const:
 		
 		# define fields you want to see here, modify how book node line 
 		# page node line within the write_x_line function in page and book classes
-		self.book_node_header = "title|subtitle|description|collection|extent|issued|subjects|author|geo_location|file\n"
+		self.book_node_header = "title|subtitle|description|collection|copyright|extent|issued|subjects|author|geo_location|file\n"
 
 		self.page_node_header = "title|subtitle|description|parent|issued|weight|file\n"
 		

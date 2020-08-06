@@ -26,26 +26,61 @@ with open('thistle_yearbooks_test.csv') as csv_file:
 		book.title = row['<mods:title>']
 		book.subtitle=row['subtitle']
 		book.description = row['description'] 
-		# self.extent = "" # should be num_of_pages;type
+		book.extent = row['<mods:extent>'] # should be num_of_pages;type
 		book.issued_date = row['<mods:dateCreated>']
 		book.subjects = row['<mods:subject>']
 		book.publisher = row['<mods:publisher>']
 		book.geo_location = row['<mods:physicalLocation>']
 		book.doi = row['<mods:identifier type="doi">']
+		book.copyright = row['<mods:accessCondition type="">']
+		book.language = row['<mods:language>']
+		if book.language == "English":
+			book.language="en"
+		if row['type'] == "paged_content":
+			hint = "paged"
+		else:
+			hint = "individual"
 
 		# build start of iiif to be passed to extractor and written in Page
 		pdf_file = 'pdfs/%s/%s' % ( book.collection, row['filename'] )
 		print(pdf_file)
 		parent = book.title.lower().replace(" ","_")
 		starter_iiif = {
+                "@context": "http://iiif.io/api/presentation/2/context.json",
                 "@type": "sc:Manifest",
                 "@id": book.url+"/"+book.collection+"/"+parent+"/manifest",
-                "label": "IIIF Manifest",
-                "@context": "http://iiif.io/api/presentation/2/context.json",
+                "label": book.title,# maybe this could be different?
+                "metadata":[
+                    {'label':'Publisher', 'value':book.publisher},
+                    {'label':'Published', 'value':[
+                
+                       {'@value':book.geo_location+', '+book.issued_date, '@language': book.language }
+                
+                      ]
+                    },
+                ]
+                'description':book.description,
+                'navDate':book.issued_date,
+                'license':row['accessCondition_link'],
+                'attribution':book.copyright
                 "sequences":[{
                     "@context": "http://iiif.io/api/presentation/2/context.json",
                     "@id": book.url+"/"+book.collection+"/"+parent+"/sequence/normal",
                     "@type": "sc:Sequence",
+                    "rendering": [
+                      {
+                        "@id": "https://dlcs.io/pdf/wellcome/pdf-item/b18035978/0",
+                        "format": "application/pdf",
+                        "label": "Download as PDF"
+                      },
+                      {
+                        "@id": "https://wellcomelibrary.org/service/fulltext/b18035978/0?raw=true",
+                        "format": "text/plain",
+                        "label": "Download raw text"
+                      }
+                    ],
+                    "viewingDirection": row['viewingDirection'],
+                    "viewingHint": hint,
                     "canvases":[]
                 }]
             }
