@@ -19,10 +19,11 @@ class Book(Const):
 		self.copyright = ""
 		self.num_of_pages=0
 		# open node file and write first line
-		self.output_book_nodes_csv = open(self.collection + '_book_nodes.csv','w')
+		self.output_book_nodes_csv = open(self.collection + '_book_nodes.csv','a')
 		self.output_book_nodes_csv.write(self.book_node_header)
 		
 	def write_book_node_line(self,parent):
+		print("writing a book line")
 		# book_line = ("%s|Thistle year book for %s||%s|%s pages;book|%s-01-01T00:00:00|College Yearbooks|Carnegie-Mellon University|Carnegie-Mellon University|%s_thistle\n") % (self.title,year,collection,str(num_of_pages),year,year)
 		# only issue with this is the pages; book for extent... not sure how to tackle this will be specific for each thing
 		book_line = ("%s|%s||%s|%s|%s pages; book|%s|%s|%s|%s|%s\n") % (self.title,self.subtitle,self.collection,self.copyright,self.num_of_pages,self.issued_date,self.subjects,self.publisher,self.geo_location,parent)
