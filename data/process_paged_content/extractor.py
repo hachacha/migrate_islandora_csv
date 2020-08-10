@@ -9,12 +9,15 @@ class Extractor(Const):
 		super().__init__()
 		self.images=[]
 
-	def loop_pages(self,parent, starter_iiif, title, issued):
+	def loop_pages(self,parent, starter_iiif, title, issued, output_folder):
 
 		for page_num, page in enumerate(self.images):
 			p = Page()
 			page_size = page._size
+			# to prevent page = 0 
+			page_num = page_num+1
 			page_num = str(page_num)
+			page.save(output_folder+'/page_'+page_num+'.jpg', 'JPEG')
 			
 			p.write_page_line(title,page_num,parent,issued)
 
@@ -63,13 +66,13 @@ class Extractor(Const):
 		output_iiif_manifest.close()
 
 
-	def extract_pages(self, pdf_file):
+	def extract_pages(self, pdf_file,parent):
 			# image extraction, text extraction, page size should be done in extractor
 			# values returned here so each page is written in a function and not looped here 
 			# loop happens outside this!
 			# will take a sec
-			
-			self.images = convert_from_path(pdf_file, 125, './')
-			return len(self.images)
+			output_folder = self.create_image_output_folder(parent)
+			self.images = convert_from_path(pdf_file, self.dpi, output_folder)
+			return len(self.images), output_folder
 
 			

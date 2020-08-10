@@ -16,7 +16,7 @@ c = Const()
 
 
 # read from csv
-with open('thistle_yearbooks_test.csv') as csv_file:
+with open(c.collection_csv) as csv_file:
 	csv_reader = csv.DictReader(csv_file)
 	line_count = 0
 	for row in csv_reader:
@@ -53,16 +53,14 @@ with open('thistle_yearbooks_test.csv') as csv_file:
                 "metadata":[
                     {'label':'Publisher', 'value':book.publisher},
                     {'label':'Published', 'value':[
-                
                        {'@value':book.geo_location+', '+book.issued_date, '@language': book.language }
-                
                       ]
-                    },
-                ]
+                    }
+                ],
                 'description':book.description,
                 'navDate':book.issued_date,
                 'license':row['accessCondition_link'],
-                'attribution':book.copyright
+                'attribution':book.copyright,
                 "sequences":[{
                     "@context": "http://iiif.io/api/presentation/2/context.json",
                     "@id": book.url+"/"+book.collection+"/"+parent+"/sequence/normal",
@@ -88,9 +86,9 @@ with open('thistle_yearbooks_test.csv') as csv_file:
 		
 		
 		extractor = Extractor()		
-		book.num_of_pages = extractor.extract_pages(pdf_file)
+		book.num_of_pages, output_folder = extractor.extract_pages(pdf_file,parent)
 		print(book.num_of_pages)
-		extractor.loop_pages(parent, starter_iiif, book.title, book.issued_date)
+		extractor.loop_pages(parent, starter_iiif, book.title, book.issued_date, output_folder)
 		book.write_book_node_line(parent)
 		print(book.num_of_pages)
 		
