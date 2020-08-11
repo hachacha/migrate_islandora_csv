@@ -63,7 +63,7 @@ class Extractor(Const):
 			print("did page %s" % (page_num))
 		print("finished book")
 		iiif_json = json.dumps(starter_iiif)
-		output_iiif_manifest = open(parent+'.json','w')
+		output_iiif_manifest = open(self.manifest_output_folder+parent+'.json','w')
 		output_iiif_manifest.write(iiif_json)
 		output_iiif_manifest.close()
 

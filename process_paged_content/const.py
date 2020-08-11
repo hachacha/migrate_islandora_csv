@@ -24,6 +24,8 @@ class Const:
 		self.image_output_folder = ("../data/images/%s") % (self.collection)
 		# migrations /collection folder 
 		self.config_csv_output_folder = ("../data/migrations/%s/") % (self.collection)
+		# manifests go here
+		self.manifest_output_folder = ("../data/manifests/%s/") % (self.collection)
 		
 		# define fields you want to see here, modify how book node line 
 		# page node line within the write_x_line function in page and book classes
