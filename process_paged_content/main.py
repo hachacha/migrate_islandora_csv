@@ -80,6 +80,7 @@ with open(c.collection_csv) as csv_file:
                     ],
                     "viewingDirection": row['viewingDirection'],
                     "viewingHint": hint,
+                    "behavior": [ "paged" ],
                     "canvases":[]
                 }]
             }
