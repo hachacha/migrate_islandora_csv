@@ -12,13 +12,14 @@ class Const:
 		self.collection_csv = "thistle_yearbooks_test.csv"
 		self.url = "http://islandora-dev.library.cmu.edu:8000"
 		self.url_escaped = parse.quote(self.url, safe='')
-		self.remote_url = "http://islandora-file-staging.library.cmu.edu"
+		self.file_staging_url = "http://islandora-file-staging.library.cmu.edu"
 		self.collection = "thistle"
 		self.collection_pretty = "Thistle Yearbooks"
 		self.migration_group = "migrate_thistle"
 		self.page_num = 1
 		self.dpi = 72
-		self.image_output_folder = "../images"
+		self.image_output_folder = ("../data/images/%s") % (self.collection)
+		self.config_csv_output_folder = ("../data/migrations/%s/") % (self.collection)
 		
 		# define fields you want to see here, modify how book node line 
 		# page node line within the write_x_line function in page and book classes

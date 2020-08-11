@@ -10,7 +10,7 @@ migration_group: migrate_thistle
 
 source:
   plugin: csv
-  path: modules/contrib/migrate_islandora_csv/data/migrations/thistle/thistle_book_nodes.csv
+  path: modules/contrib/migrate_islandora_csv/data/migrations/thistle/book_nodes.csv
   delimiter: '|'  
 
   # 1 means you have a header row, 0 means you don't

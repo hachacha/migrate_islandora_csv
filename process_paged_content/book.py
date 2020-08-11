@@ -20,7 +20,7 @@ class Book(Const):
 		self.copyright = ""
 		self.num_of_pages=0
 		# open node file and write first line
-		self.output_book_nodes_csv = open(self.collection + '_book_nodes.csv','a')
+		self.output_book_nodes_csv = open(self.config_csv_output_folder + 'book_nodes.csv','a')
 		self.output_book_nodes_csv.write(self.book_node_header)
 		
 	def write_book_node_line(self,parent):
