@@ -13,9 +13,12 @@ class Page(Const):
 		self.page_file_description = ""
 		self.output_page_nodes_csv = open(self.collection + '_page_nodes.csv','a')
 		self.output_page_files_csv = open(self.collection + '_page_files.csv','a')
+		
+
+	def write_headers(self):
 		self.output_page_files_csv.write(self.page_file_header)
 		self.output_page_nodes_csv.write(self.page_node_header)
-
+		
 	def increment_page_num(self):
 		self.page_num+=1
 

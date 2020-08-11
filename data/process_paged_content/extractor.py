@@ -13,6 +13,8 @@ class Extractor(Const):
 
 		for page_num, page in enumerate(self.images):
 			p = Page()
+			if page_num is 0:
+				p.write_headers()
 			page_size = page._size
 			# to prevent page = 0 
 			page_num = page_num+1

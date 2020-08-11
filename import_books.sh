@@ -4,6 +4,7 @@ echo "import paged content"
 drush -y --userid=1 --uri=localhost:8000 migrate:import cmu_taxonomy_corporate_bodies
 drush -y --userid=1 --uri=localhost:8000 migrate:import cmu_taxonomy_geo_locations
 drush -y --userid=1 --uri=localhost:8000 migrate:import cmu_taxonomy_subjects
+drush -y --userid=1 --uri=localhost:8000 migrate:import cmu_taxonomy_copyright
 
 drush -y --userid=1 --uri=localhost:8000 migrate:import thistle_collection
 
