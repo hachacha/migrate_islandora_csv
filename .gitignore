@@ -2,3 +2,4 @@
 *.pdf
 data/process_paged_content/__pycache__
 *.pyc
+*.jpg

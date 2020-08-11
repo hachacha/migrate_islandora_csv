@@ -9,16 +9,20 @@ import os
 class Const:
 	def __init__(self):
 		# overall consts
+		# collection_csv is the target
 		self.collection_csv = "thistle_yearbooks_test.csv"
 		self.url = "http://islandora-dev.library.cmu.edu:8000"
 		self.url_escaped = parse.quote(self.url, safe='')
 		self.file_staging_url = "http://islandora-file-staging.library.cmu.edu"
+		# collection var is used for many places and sometimes for folder names
+		# it should be able to be used as a folder name and all lowercase
 		self.collection = "thistle"
-		self.collection_pretty = "Thistle Yearbooks"
 		self.migration_group = "migrate_thistle"
-		self.page_num = 1
 		self.dpi = 72
+		# put in the data images folder - when running this on file-staging the
+		# images should be copied to the html folder (html/collection/blah)
 		self.image_output_folder = ("../data/images/%s") % (self.collection)
+		# migrations /collection folder 
 		self.config_csv_output_folder = ("../data/migrations/%s/") % (self.collection)
 		
 		# define fields you want to see here, modify how book node line 
