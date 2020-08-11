@@ -1,4 +1,4 @@
-data/process_paged_content/pdfs
+#data/process_paged_content/pdfs
 *.pdf
 data/process_paged_content/__pycache__
 *.pyc
