@@ -60,6 +60,7 @@ with open(c.collection_csv) as csv_file:
                 'description':book.description,
                 'navDate':book.issued_date,
                 'license':row['accessCondition_link'],
+                "logo" : "https://www.library.cmu.edu/sites/drupal-live.library.cmu.edu/files/CMU_LibrariesLogo_Horizontal_Black.png"
                 'attribution':book.copyright,
                 "sequences":[{
                     "@context": "http://iiif.io/api/presentation/2/context.json",
