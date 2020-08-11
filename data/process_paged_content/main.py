@@ -86,9 +86,10 @@ with open(c.collection_csv) as csv_file:
 		
 		
 		extractor = Extractor()		
-		book.num_of_pages, output_folder = extractor.extract_pages(pdf_file,parent)
+		book.num_of_pages, book.output_folder = extractor.extract_pages(pdf_file,parent)
 		print(book.num_of_pages)
 		extractor.loop_pages(parent, starter_iiif, book.title, book.issued_date, output_folder)
 		book.write_book_node_line(parent)
+		book.cleanup_ppms(output_folder)
 		print(book.num_of_pages)
 		

@@ -1,4 +1,5 @@
 from const import Const
+from os import remove
 
 # bulk of variables here
 class Book(Const):
@@ -29,3 +30,6 @@ class Book(Const):
 		book_line = ("%s|%s||%s|%s|%s pages; book|%s|%s|%s|%s|%s\n") % (self.title,self.subtitle,self.collection,self.copyright,self.num_of_pages,self.issued_date,self.subjects,self.publisher,self.geo_location,parent)
 		self.output_book_nodes_csv.write(book_line)
 		self.output_book_nodes_csv.close()
+
+	def cleanup_ppms(self,output_folder):
+		remove(output_folder+"/*.ppm")

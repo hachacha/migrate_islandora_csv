@@ -17,7 +17,7 @@ class Const:
 		self.collection_pretty = "Thistle Yearbooks"
 		self.migration_group = "migrate_thistle"
 		self.page_num = 1
-		self.dpi = 125
+		self.dpi = 72
 		self.image_output_folder = "../images"
 		
 		# define fields you want to see here, modify how book node line 
