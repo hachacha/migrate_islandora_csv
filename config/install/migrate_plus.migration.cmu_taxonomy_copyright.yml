@@ -37,4 +37,4 @@ process:
 
 destination:
   plugin: entity:taxonomy_term
-  default_bundle: corporate_body
+  default_bundle: rights_cmu
