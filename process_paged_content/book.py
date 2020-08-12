@@ -34,7 +34,7 @@ class Book(Const):
 		self.output_book_nodes_csv.write(book_line)
 		self.output_book_nodes_csv.close()
 		
-		manifest_line = ("%s|%s.json\n") % (parent,parent)
+		manifest_line = ("%s manifest|%s|%s.json\n") % (parent,parent,parent)
 		self.output_manifest_csv.write(manifest_line)
 		self.output_manifest_csv.close()
 

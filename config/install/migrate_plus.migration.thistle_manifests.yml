@@ -44,6 +44,18 @@ process:
   # Hack the file name out of the full path provided in the 'file' column.
   # filename: title
   # parent: parent
+  field_member_of:
+    -
+      plugin: skip_on_empty
+      source: parent
+      method: process
+    -
+      plugin: entity_lookup
+      ignore_case: true
+      access_check: false
+      entity_type: node
+      value_key: field_pid
+      
   filename: 
     -
       plugin: callback # calls a php function pathinfo below
