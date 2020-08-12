@@ -35,6 +35,8 @@ class Const:
 		
 		self.page_file_header = 'title|subtitle|description|issued|file\n'
 
+		self.manifest_header = 'title|file\n'
+
 	def create_image_output_folder(self,folder_name):
 		# check if folder exists
 		fn = os.getcwd()+"/"+self.image_output_folder+"/"+folder_name

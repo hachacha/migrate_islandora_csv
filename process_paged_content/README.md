@@ -3,7 +3,9 @@ There are probably more things but just getting this up
 ### before
 
 	- set up local CONST variables
-	- move pdfs to islandora-file-staging 
+		- be sure that the csv headers will match your migration yml files!
+	- move pdfs to islandora-file-staging from digitalcollections
+	- place pdf inside process_paged_content/pdfs/collection/*.pdf
 
 ### during
 

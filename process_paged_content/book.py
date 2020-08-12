@@ -22,6 +22,9 @@ class Book(Const):
 		# open node file and write first line
 		self.output_book_nodes_csv = open(self.config_csv_output_folder + 'book_nodes.csv','a')
 		self.output_book_nodes_csv.write(self.book_node_header)
+
+		self.output_manifest_csv = open(self.manifest_output_folder + 'manifests.csv','a')
+		self.output_manifest_csv.write(self.manifest_header)
 		
 	def write_book_node_line(self,parent):
 		print("writing a book line")
@@ -30,6 +33,10 @@ class Book(Const):
 		book_line = ("%s|%s||%s|%s|%s pages; book|%s|%s|%s|%s|%s\n") % (self.title,self.subtitle,self.collection,self.copyright,self.num_of_pages,self.issued_date,self.subjects,self.publisher,self.geo_location,parent)
 		self.output_book_nodes_csv.write(book_line)
 		self.output_book_nodes_csv.close()
+		
+		manifest_line = ("%s|%s.json") % (parent,parent)
+		self.output_manifest_csv.write(manifest_line)
+		self.output_manifest_csv.close()
 
 	def cleanup_ppms(self,output_folder):
 		remove(output_folder+"/*.ppm")
