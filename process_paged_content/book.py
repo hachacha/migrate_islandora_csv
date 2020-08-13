@@ -1,5 +1,5 @@
 from const import Const
-from os import remove
+from os import remove, listdir
 
 # bulk of variables here
 class Book(Const):
@@ -39,4 +39,7 @@ class Book(Const):
 		self.output_manifest_csv.close()
 
 	def cleanup_ppms(self,output_folder):
-		remove(output_folder+"/*.ppm")
+		all_files = listdir(output_folder)
+		for i in all_files:
+			if ".ppm" in i:
+				remove(output_folder+"/"+i)
