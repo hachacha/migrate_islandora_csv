@@ -17,7 +17,7 @@ class Page(Const):
 		self.output_page_files_csv = open(self.config_csv_output_folder+'page_files.csv','a')
 		
 
-	def write_headers(self):
+	def write_page_headers(self):
 		self.output_page_files_csv.write(self.page_file_header)
 		self.output_page_nodes_csv.write(self.page_node_header)
 		

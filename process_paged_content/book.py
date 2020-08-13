@@ -20,12 +20,16 @@ class Book(Const):
 		self.copyright = ""
 		self.num_of_pages=0
 		# open node file and write first line
+		# placed here to be referenced in book and the below headers
 		self.output_book_nodes_csv = open(self.config_csv_output_folder + 'book_nodes.csv','a')
-		self.output_book_nodes_csv.write(self.book_node_header)
-
 		self.output_manifest_csv = open(self.manifest_output_folder + 'manifests.csv','a')
-		self.output_manifest_csv.write(self.manifest_header)
 		
+	def write_book_and_manifest_headers(self):
+		# placed here to be referenced in book and the below headers
+		print("writing book header")
+		self.output_book_nodes_csv.write(self.book_node_header)		
+		self.output_manifest_csv.write(self.manifest_header)
+
 	def write_book_node_line(self,parent):
 		print("writing a book line")
 		# book_line = ("%s|Thistle year book for %s||%s|%s pages;book|%s-01-01T00:00:00|College Yearbooks|Carnegie-Mellon University|Carnegie-Mellon University|%s_thistle\n") % (self.title,year,collection,str(num_of_pages),year,year)

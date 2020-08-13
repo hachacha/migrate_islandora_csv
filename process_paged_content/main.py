@@ -11,16 +11,12 @@ from book import Book
 from page import Page
 from extractor import Extractor
 
-
-# make me a const and all this
-c = Const()
-
 def loop_pages(book, images):
 
 		for page_num, page in enumerate(images):
 			p = Page()
 			if page_num is 0:
-				p.write_headers()
+				p.write_page_headers()
 			page_size = page._size
 			# to prevent page = 0 
 			page_num = page_num+1
@@ -73,15 +69,21 @@ def loop_pages(book, images):
 		output_iiif_manifest.write(iiif_json)
 		output_iiif_manifest.close()
 
+
+# make me a const and all this
+c = Const()
+
 # read from csv
 with open(c.collection_csv) as csv_file:
 
 	csv_reader = DictReader(csv_file)
 
-	for row in csv_reader:
+	for index, row in enumerate(csv_reader):
 
 		# build book
 		book = Book()
+		if index is 0:
+			book.write_book_and_manifest_headers()
 		book.title = row['<mods:title>']
 		# parent used often!
 		book.parent = book.title.lower().replace(" ","_")
@@ -151,7 +153,7 @@ with open(c.collection_csv) as csv_file:
 		
 		extractor = Extractor()
 		book.image_output_folder = extractor.extract_pages(pdf_file,book.parent)
-		# loop_pages(book, extractor.images)
-		# book.write_book_node_line(book.parent)
+		loop_pages(book, extractor.images)
+		book.write_book_node_line(book.parent)
 		book.cleanup_ppms(book.image_output_folder)
 		
