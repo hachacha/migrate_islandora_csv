@@ -4,7 +4,7 @@ cmu-specific workflow and migration of archivalware items in to islandora
 
 ## steps for metadata workers
 
-### the headers don't really matter that much for Islandora but we have decided to go with MODS as it's most comfy for our purposes.
+the headers don't really matter that much for Islandora but we have decided to go with MODS as it's most comfy for our purposes.
 
 1. clean the metadata
 	a) make sure all relevant fields are represented
