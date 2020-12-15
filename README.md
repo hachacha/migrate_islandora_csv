@@ -1,6 +1,7 @@
 # background
 
-cmu-specific workflow and migration of archivalware items in to islandora
+cmu-specific workflow and migration of archivalware items in to islandora. this assumes we're reading from pdfs to get paged content. This may not be the case and wil have to be updated in the `process_paged_content` section. 
+files should be put on the islandora-file-staging server
 
 ## steps for metadata workers
 
@@ -32,6 +33,9 @@ the headers don't really matter that much for Islandora but we have decided to g
 4. pull on the islandora server
 5. uninstall and reinstall with drush 
 6. run the migration from there
+7. after each successful migration make a note in the changelog stating which migration was run and when and commit everything.
+
+if there are any updates reference the last committed files
 
 
 
