@@ -11,7 +11,7 @@ class Const:
 		# overall consts
 		# collection_csv is the target
 		self.collection_csv = "thistle_yearbooks_test.csv"
-		self.url = "http://islandora-dev.library.cmu.edu:8000"
+		self.url = "http://localhost:8000"
 		self.url_escaped = parse.quote(self.url, safe='')
 		self.file_staging_url = "http://islandora-file-staging.library.cmu.edu"
 		# collection var is used for many places and sometimes for folder names
@@ -36,6 +36,19 @@ class Const:
 		self.page_file_header = 'title|subtitle|description|issued|file\n'
 
 		self.manifest_header = 'title|parent|file\n'
+
+		#csv headers incoming here. it may be easier to use these variables as str and ref in main
+		c_title = '<mods:title>'
+		c_subtitle = 'subtitle'
+		c_desc = 'description'
+		c_extent = '<mods:extent>' # should be num_of_pages;typ
+		c_date_created = '<mods:dateCreated>'
+		c_subjects = '<mods:subject>'
+		c_publisher = '<mods:publisher>'
+		c_physical_location = '<mods:physicalLocation>'
+		c_doi = '<mods:identifier type="doi">'
+		c_access = '<mods:accessCondition type="">'
+		c_language = '<mods:language>'
 		
 
 	def create_image_output_folder(self,folder_name):
