@@ -35,6 +35,8 @@ class Const:
 		
 		self.page_file_header = 'title|subtitle|description|issued|file\n'
 
+		self.page_text_header = 'title|parent|weight|file\n'
+
 		self.manifest_header = 'title|parent|file\n'
 
 		#csv headers incoming here. it may be easier to use these variables as str and ref in main

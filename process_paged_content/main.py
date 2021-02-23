@@ -11,15 +11,16 @@ from book import Book
 from page import Page
 from extractor import Extractor
 
-def loop_pages(book, images):
+def loop_pages(book, images, write_headers=False):
 
 		for page_num, page in enumerate(images):
 			p = Page()
-			if page_num is 0:
+			if write_headers is True:
 				p.write_page_headers()
+				write_headers = False
 			page_size = page._size
 			# to prevent page = 0 
-			page_num = page_num+1
+			page_num = page_num + 1
 			page_num = str(page_num)
 			page.save(book.image_output_folder+'/page_'+page_num+'.jpg', 'JPEG')
 			
@@ -81,8 +82,10 @@ c = Const()
 with open(c.collection_csv) as csv_file:
 
 	csv_reader = DictReader(csv_file)
+	
 
 	for index, row in enumerate(csv_reader):
+		write_headers = False
 
 		# build book
 		
@@ -92,28 +95,30 @@ with open(c.collection_csv) as csv_file:
 			hint = "paged"
 		else:
 			hint = "individual"
-
-		if  hint == "paged" :
-			book = Book()
-			if index is 0:
-				book.write_book_and_manifest_headers()
-			book.title = row[c.c_title]
-			book.parent = book.title.lower().replace(" ","_")
-			book.subtitle=row[c.c_subtitle]
-			book.description = row[c.c_desc] 
-			book.extent = row[c.c_extent] # should be num_of_pages;type
-			book.issued_date = row[c.c_date_created]
-			book.subjects = row[c.c_subjects]
-			book.publisher = row[c.c_publisher]
-			book.geo_location = row[c.c_physical_location]
-			book.doi = row[c.c_doi]
-			book.copyright = row[c.c_access]
-			book.language = row[c.c_language]
-			if book.language == "English":
-				book.language="en"
-		else:
-			print("haven't dealt with non paged non book items yet :)")
-			exit()
+		
+		# if  hint == "paged" :
+		
+		book = Book()
+		if index == 0:
+			book.write_book_and_manifest_headers()
+			write_headers=True
+		book.title = row[c.c_title]
+		book.parent = book.title.lower().replace(" ","_")
+		book.subtitle=row[c.c_subtitle]
+		book.description = row[c.c_desc] 
+		book.extent = row[c.c_extent] # should be num_of_pages;type
+		book.issued_date = row[c.c_date_created]
+		book.subjects = row[c.c_subjects]
+		book.publisher = row[c.c_publisher]
+		book.geo_location = row[c.c_physical_location]
+		book.doi = row[c.c_doi]
+		book.copyright = row[c.c_access]
+		book.language = row[c.c_language]
+		if book.language == "English":
+			book.language="en"
+		# else:
+		# 	print("haven't dealt with non paged non book items yet :)")
+		# 	exit()
 		
 
 
@@ -183,7 +188,7 @@ with open(c.collection_csv) as csv_file:
 		
 		extractor = Extractor()
 		book.image_output_folder = extractor.extract_pages(pdf_file,book.parent)
-		loop_pages(book, extractor.images)
+		loop_pages(book, extractor.images,write_headers)
 		book.write_book_node_line(book.parent)
 		book.cleanup_ppms(book.image_output_folder)
 		
