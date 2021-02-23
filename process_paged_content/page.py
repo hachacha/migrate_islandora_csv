@@ -13,7 +13,7 @@ class Page(Const):
 		self.page_file_description = ""
 		# files hosted at:
 		# staging url / collection / "parent" / page_num
-		self.output_page_text_csv = open(self.config_csv_output_folder+'page_text.csv','a')
+		self.output_page_text_csv = open(self.config_csv_output_folder+'text_files.csv','a')
 		self.output_page_nodes_csv = open(self.config_csv_output_folder+'page_nodes.csv','a')
 		self.output_page_files_csv = open(self.config_csv_output_folder+'page_files.csv','a')
 		
