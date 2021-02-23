@@ -4,7 +4,7 @@ dependencies:
     module:
       - migrate_islandora_csv 
 
-id: thistle_text_media 
+id: thistle_text_book_media 
 label: Import thistle text Media to BOOK for FTS 
 migration_group: migrate_thistle
 
