@@ -60,8 +60,8 @@ process:
     access_check: false
     source: parent
     entity_type: node
-    value
-    no_stub: true
+    value_key: field_pid
+    # no_stub: true
     
 destination:
   # These are 'image' media we're making.
