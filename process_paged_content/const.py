@@ -13,7 +13,7 @@ class Const:
 		self.collection_csv = "thistle_yearbooks_test.csv"
 		self.url = "http://localhost:8000"
 		self.url_escaped = parse.quote(self.url, safe='')
-		self.file_staging_url = "http://islandora-file-staging.library.cmu.edu"
+		self.file_staging_url = "/var/www/html"
 		# collection var is used for many places and sometimes for folder names
 		# it should be able to be used as a folder name and all lowercase
 		self.collection = "thistle"
