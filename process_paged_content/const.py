@@ -38,17 +38,17 @@ class Const:
 		self.manifest_header = 'title|parent|file\n'
 
 		#csv headers incoming here. it may be easier to use these variables as str and ref in main
-		c_title = '<mods:title>'
-		c_subtitle = 'subtitle'
-		c_desc = 'description'
-		c_extent = '<mods:extent>' # should be num_of_pages;typ
-		c_date_created = '<mods:dateCreated>'
-		c_subjects = '<mods:subject>'
-		c_publisher = '<mods:publisher>'
-		c_physical_location = '<mods:physicalLocation>'
-		c_doi = '<mods:identifier type="doi">'
-		c_access = '<mods:accessCondition type="">'
-		c_language = '<mods:language>'
+		self.c_title = '<mods:title>'
+		self.c_subtitle = 'subtitle'
+		self.c_desc = 'description'
+		self.c_extent = '<mods:extent>' # should be num_of_pages;typ
+		self.c_date_created = '<mods:dateCreated>'
+		self.c_subjects = '<mods:subject>'
+		self.c_publisher = '<mods:publisher>'
+		self.c_physical_location = '<mods:physicalLocation>'
+		self.c_doi = '<mods:identifier type="doi">'
+		self.c_access = '<mods:accessCondition type="">'
+		self.c_language = '<mods:language>'
 		
 
 	def create_image_output_folder(self,folder_name):

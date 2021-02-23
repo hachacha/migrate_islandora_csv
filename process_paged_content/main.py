@@ -30,7 +30,7 @@ def loop_pages(book, images):
 			label = book.collection+"_"+book.parent+"_page_"+page_num+".jpg"
 			url_encoded_label = parse.quote(label, safe='')
 			# manifest id and "on"
-			canvas_id = book.url+"/"+book.collection+"/"+book.parent+"/canvas/"+page_num
+			canvas_id = book.url+"/"+book.collection+":"+book.parent+"/canvas/"+page_num
 			# based on what's already in islandora node/x/manifest
 			page_dict = {
 
@@ -41,21 +41,21 @@ def loop_pages(book, images):
 				"width": page_size[1],
 				"images": [
 				{
-					"@id": book.url+"/"+book.collection+"/"+book.parent+"/annotation/"+page_num,
-					"on" : book.url+"/"+book.collection+"/"+book.parent+"/canvas/"+page_num
+					"@id": book.url+"/"+book.collection+":"+book.parent+"/annotation/"+page_num,
+					"on" : book.url+"/"+book.collection+":"+book.parent+"/canvas/"+page_num,
 					"@type": "oa:Annotation",
 					"motivation": "sc:painting",
 					"resource": {
 						# "@id": book.url+"/cantaloupe/iiif/2/"+book.url_escaped+"%2F_flysystem%2Ffedora%2F"+book.migration_group+"%2F"+url_encoded_label+"/full/full/0/default.jpg",
-						"@id" : book.url+"/"+book.collection+"/"+book.parent+"/image/"+page_num
-						"@context":
+						"@id" : book.url+"/"+book.collection+":"+book.parent+"/image/"+page_num,
+						# "@context":
 						"@type": "dctypes:Image",
 						"format": "image/jpeg",
 						"height": page_size[0],
 						"width": page_size[1],
 						"service": {
 							# "@id": book.url+"/cantaloupe/iiif/2/"+book.url_escaped+"%2F_flysystem%2Ffedora%2F"+book.migration_group+"%2F"+url_encoded_label,
-							"@id" : "[[IIIF_IMAGE_SERVER]] "+book.collection+"/"+book.parent+", "+page_num+".jpg, jpg",
+							"@id" : "[[IIIF_IMAGE_SERVER]] "+book.collection+":"+book.parent+", "+page_num+".jpg, jpg",
 							"@context": "http://iiif.io/api/image/2/context.json",
 							"profile": "http://iiif.io/api/image/2/profiles/level2.json"
 						}
@@ -92,11 +92,11 @@ with open(c.collection_csv) as csv_file:
 			hint = "paged"
 		else:
 			hint = "individual"
-		# parent used often!
 
-		if index is 0 and hint == "paged" :
+		if  hint == "paged" :
 			book = Book()
-			book.write_book_and_manifest_headers()
+			if index is 0:
+				book.write_book_and_manifest_headers()
 			book.title = row[c.c_title]
 			book.parent = book.title.lower().replace(" ","_")
 			book.subtitle=row[c.c_subtitle]
@@ -125,7 +125,7 @@ with open(c.collection_csv) as csv_file:
 		book.starter_iiif = {
                 "@context": "http://iiif.io/api/presentation/2/context.json",
                 "@type": "sc:Manifest",
-                "@id": book.url+"/"+book.collection+"/"+book.parent+"/manifest.json",
+                "@id": book.url+"/"+book.collection+":"+book.parent+"/manifest.json",
                 "label": book.title,
                 "metadata":[
                     {'label':'Publisher', 'value':book.publisher},
@@ -151,8 +151,8 @@ with open(c.collection_csv) as csv_file:
 				  ],
 				  "service": {
 				    "@context": "http://iiif.io/api/search/0/context.json",
-				    "@id": "[[IIIF_SEARCH_API]] "+book.collection+"/"+book.parent,
-				    "old_id": "http://localhost:8080/simpleAnnotationStore/search-api/"+book.collection+"/"+book.parent+"/search",
+				    "@id": "[[IIIF_SEARCH_API]] "+book.collection+":"+book.parent,
+				    "old_id": "http://localhost:8080/simpleAnnotationStore/search-api/"+book.collection+":"+book.parent+"/search",
 				    "comment": "the search endpoint to use for this item.  expands to above line ^^^^^  but we can use external one also",
 				    "profile": "http://iiif.io/api/search/0/search",
 				    "label": "Search inside this Newspaper."
@@ -161,11 +161,11 @@ with open(c.collection_csv) as csv_file:
                 "attribution": "Provided by Carnegie Mellon University Archives & Special Collections",
                 "sequences":[{
                     "@context": "http://iiif.io/api/presentation/2/context.json",
-                    "@id": book.url+"/"+book.collection+"/"+book.parent+"/sequence/normal",
+                    "@id": book.url+"/"+book.collection+":"+book.parent+"/sequence/normal",
                     "@type": "sc:Sequence",
                     "rendering": [
                       {
-				 		"@id": "[[IIIF_PDF_DOWNLOAD]] "+book.collection+"/"+book.parent,
+				 		"@id": "[[IIIF_PDF_DOWNLOAD]] "+book.collection+":"+book.parent,
 						"comment": "download the pdf file.  note: label below should include file size",
 				        "label": "Download "+hint+" (PDF, "+book.extent+" pages)",
 				        "format": "application/pdf"
