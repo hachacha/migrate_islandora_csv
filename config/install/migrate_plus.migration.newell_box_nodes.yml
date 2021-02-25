@@ -1,0 +1,72 @@
+# Uninstall this config when the feature is uninstalled
+dependencies:
+  enforced:
+    module:
+      - migrate_islandora_csv
+
+id: newell_box_nodes
+label: Import NEWELL BOX  Nodes from CSV 
+migration_group: migrate_newell
+
+source:
+  plugin: csv
+  path: modules/contrib/migrate_islandora_csv/data/migrations/newell/main.csv
+  delimiter: '|'
+
+  # 1 means you have a header row, 0 means you don't
+  header_row_count: 1
+
+  # Each migration needs a unique key per row in the csv.  Here we're using the file path.
+  keys:
+    - boxID 
+
+  # You can't enter string literals into a process plugin, but you can give it a constant as a 'source'.
+  constants:
+    # We're tagging our nodes as Pages
+    model: 'Collection'
+
+    # Everything gets created as admin
+    uid: 1
+    # url_root: http://islandora-file-staging.library.cmu.edu/thistle/images/
+
+    #dont promote pages to front page
+    promote: 0
+
+# Set fields using values from the CSV
+process:
+  title: boxTitle
+  uid: constants/uid
+  promote: constants/promote
+  #pid used to link book to its pages 
+  field_pid: boxID #######update to matt thing.
+
+
+  # Make the object 'Collection' 
+  field_model:
+    plugin: entity_lookup
+    source: constants/model
+    entity_type: taxonomy_term
+    value_key: name 
+    bundle_key: vid
+    bundle: islandora_models 
+
+
+  # use 'machine_collection' field to find the node with pid='machine_collection' of this page
+  field_member_of:
+    -
+      plugin: skip_on_empty
+      source: seriesID
+      method: process
+    -
+      plugin: entity_lookup
+      ignore_case: true
+      access_check: false
+      entity_type: node
+      value_key: field_pid
+#      bundle_key: type
+#      bundle: islandora_object
+
+# We're making nodes
+destination:
+  plugin: 'entity:node'
+  default_bundle: islandora_object
