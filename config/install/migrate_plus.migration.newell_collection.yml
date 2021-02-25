@@ -33,7 +33,7 @@ source:
 
 # Set fields using values from the CSV
 process:
-  title: collection
+  title: collectionTitle
   uid: constants/uid
   # identifiers -- change to machine name for collection ####matt
   field_identifier: collectionID
